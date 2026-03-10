@@ -79,6 +79,8 @@ export default function IntroOverlay() {
       role="presentation"
       aria-hidden="true"
     >
+      {/* Logo: <img> mit ref für Intro-Animation (next/image unterstützt ref anders) */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={logoRef}
         src="/logo.png"

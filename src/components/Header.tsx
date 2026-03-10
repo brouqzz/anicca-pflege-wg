@@ -3,15 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 
-/** Fallback, wenn /logo.png fehlt oder nicht lädt */
-function LogoFallback() {
-  return (
-    <span className="font-serif text-xl font-semibold tracking-tight text-navy-700 sm:text-2xl">
-      Anicca Pflege WG
-    </span>
-  );
-}
-
 /**
  * Header im Stil Villa Clay: schmale Info-Leiste oben, darunter Logo + Navigation.
  * Ruhig, premium, viel Weißraum.
@@ -55,6 +46,7 @@ export default function Header() {
           aria-label="Anicca Pflege WG – Startseite"
         >
           {!logoError ? (
+            // eslint-disable-next-line @next/next/no-img-element -- Logo als <img> für zuverlässige PNG-Transparenz
             <img
               src="/logo.png"
               alt=""
