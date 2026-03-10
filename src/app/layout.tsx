@@ -21,10 +21,30 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
+const SITE_URL = "https://anicca.berlin";
+
 export const metadata: Metadata = {
-  title: "Anicca Pflege WG | Betreutes Wohnen mit Herz",
+  title: "Anicca Pflege WG Berlin | Betreutes Wohnen mit Herz",
   description:
-    "Premium Pflege-Wohngemeinschaft – Sicherheit und Vertrauen für Ihre Angehörigen. Wir verbinden Geborgenheit mit professioneller Betreuung.",
+    "Premium Pflege-Wohngemeinschaft in Berlin – Sicherheit und Vertrauen für Ihre Angehörigen. Betreutes Wohnen, Bezugspflege und Rund-um-die-Uhr-Betreuung.",
+  keywords: [
+    "Pflege WG Berlin",
+    "Betreutes Wohnen Berlin",
+    "Pflege-Wohngemeinschaft",
+    "Anicca Pflege WG",
+    "Seniorenbetreuung Berlin",
+  ],
+  openGraph: {
+    title: "Anicca Pflege WG Berlin | Betreutes Wohnen mit Herz",
+    description:
+      "Premium Pflege-Wohngemeinschaft – Sicherheit und Vertrauen für Ihre Angehörigen.",
+    url: SITE_URL,
+    siteName: "Anicca Pflege WG",
+    locale: "de_DE",
+    type: "website",
+  },
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: SITE_URL },
 };
 
 /** Viewport für Handy: korrekte Skalierung, kein versehentliches Zoomen */
