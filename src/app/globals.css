@@ -2,26 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Anicca Pflege WG – Globale Styles
+ * Eine zentrale Quelle für Hintergrund/Text und Smooth Scroll.
+ */
+
 :root {
+  /* Hintergrund & Text – wie Villa Clay: viel Weiß */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2d3d58;
+  /* Akzentfarben (optional in Komponenten) */
+  --accent-gold: #c98f2e;
+  --accent-sage: #5f6f5c;
+  --accent-navy: #2d3d58;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Sanftes Scrollen bei Klick auf Anker-Links (z. B. #kontakt) */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-source-sans), system-ui, sans-serif;
+  /* Kanten weich zeichnen für bessere Lesbarkeit */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Optionale Utility-Klasse für ausgewählten Text */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* ==========================================================================
+   Intro-Animation (reduziert, architektonisch)
+   Nur CSS, kein Framework. Einmal pro Sitzung.
+   ========================================================================== */
+:root {
+  --intro-ease: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* Scroll sperren, solange Intro sichtbar */
+body.intro-active {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Overlay: reinweiß, fullscreen, über allem */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  transition: opacity 1.2s var(--intro-ease);
+  pointer-events: none;
+}
+
+.intro-overlay.intro-overlay-fadeout {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Logo: Start unsichtbar, weiches Fade-In + leichter Scale */
+.intro-logo {
+  width: auto;
+  height: clamp(8rem, 28vw, 12rem);
+  max-width: 92vw;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.9s var(--intro-ease), transform 0.9s var(--intro-ease);
+}
+
+.intro-logo.intro-logo-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Seiteninhalt: nur während Intro versteckt (body.intro-active), sonst sichtbar */
+#page-content {
+  transition: opacity 1.2s var(--intro-ease), transform 1.2s var(--intro-ease);
+}
+
+body.intro-active #page-content {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+#page-content.intro-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
