@@ -17,16 +17,16 @@ export default function Footer() {
             <address className="not-italic text-sm text-navy-600">
               <p className="text-xs font-semibold uppercase tracking-wider text-navy-500 mb-2">Pflege-WG</p>
               <p className="font-medium text-navy-700">Anicca Pflege WG</p>
-              <p className="mt-1">Adresse (Platzhalter)</p>
-              <p>PLZ Ort</p>
+              <p className="mt-1">Pohlstraße 49</p>
+              <p>10785 Berlin</p>
               <p className="mt-2">
-                <a href="tel:03012345670" className="hover:text-gold-600 transition-colors">
-                  Telefon: 030 1234567-0
+                <a href="tel:+4915229451581" className="hover:text-gold-600 transition-colors">
+                  Telefon: 0152 29451581
                 </a>
               </p>
               <p>
-                <a href="mailto:kontakt@example.de" className="hover:text-gold-600 transition-colors">
-                  kontakt@example.de
+                <a href="mailto:nika.chekurda@icloud.com" className="hover:text-gold-600 transition-colors break-all">
+                  nika.chekurda@icloud.com
                 </a>
               </p>
             </address>
@@ -39,8 +39,11 @@ export default function Footer() {
               <Link href="#ueber-uns" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
                 Über uns
               </Link>
+              <Link href="#unsere-wg" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
+                Unsere WG
+              </Link>
               <Link href="#pflegekonzept" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
-                Pflegekonzept
+                Pflege & Betreuung
               </Link>
               <Link href="#leistungen" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
                 Leistungen
@@ -67,7 +70,7 @@ export default function Footer() {
           <div className="md:col-span-2 lg:col-span-1">
             <h3 className="mb-4 font-serif text-lg font-semibold text-navy-700">Anicca Pflege WG</h3>
             <p className="text-sm text-navy-600 max-w-sm">
-              Betreutes Wohnen mit Herz – Sicherheit und Vertrauen für Ihre Angehörigen.
+              Familiär wohnen – professionell versorgt. Kleine Pflege-WG mit 5 Bewohnern im Herzen Berlins. Kurzfristige Aufnahme möglich.
             </p>
           </div>
         </div>

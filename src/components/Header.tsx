@@ -9,14 +9,14 @@ import { useState } from "react";
  */
 const NAV_LINKS = [
   { href: "#ueber-uns", label: "Über uns" },
-  { href: "#pflegekonzept", label: "Pflegekonzept" },
+  { href: "#unsere-wg", label: "Unsere WG" },
+  { href: "#pflegekonzept", label: "Pflege & Betreuung" },
   { href: "#leistungen", label: "Leistungen" },
   { href: "#galerie", label: "Galerie" },
   { href: "#kontakt", label: "Kontakt" },
 ] as const;
 
-// Platzhalter – durch echte Telefonnummer ersetzen
-const INFO_PHONE = "030 / 1234567-0";
+const INFO_PHONE = "0152 / 29451581";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
