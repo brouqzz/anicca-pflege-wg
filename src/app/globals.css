@@ -73,8 +73,8 @@ body.intro-active {
 /* Logo: Start unsichtbar, weiches Fade-In + leichter Scale */
 .intro-logo {
   width: auto;
-  height: clamp(8rem, 28vw, 12rem);
-  max-width: 92vw;
+  height: clamp(10rem, 38vw, 18rem);
+  max-width: 95vw;
   object-fit: contain;
   opacity: 0;
   transform: scale(0.96);
