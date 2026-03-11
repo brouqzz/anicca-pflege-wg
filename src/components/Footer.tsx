@@ -55,12 +55,8 @@ export default function Footer() {
                 Kontakt
               </Link>
               <span className="mt-2 border-t border-beige-200/80 pt-2">
-                <Link href="/impressum" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
-                  Impressum
-                </Link>
-                <span className="mx-2 text-navy-400">/</span>
-                <Link href="/datenschutz" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
-                  Datenschutzerklärung
+                <Link href="/rechtliches" className="text-navy-600 hover:text-gold-600 transition-colors w-fit">
+                  Impressum & Datenschutz
                 </Link>
               </span>
             </nav>

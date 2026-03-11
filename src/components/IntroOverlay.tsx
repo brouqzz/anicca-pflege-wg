@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Reduzierte, architektonische Intro-Animation.
- * Nur einmal pro Tab-Session (sessionStorage). Nicht bei Klicks auf Impressum/Datenschutz
- * oder bei Zurück-Navigation – dort bleibt die Seite ohne Intro sichtbar.
+ * Bei Reload (F5) wird die Intro wieder gezeigt. Bei Klicks auf Impressum/Datenschutz
+ * keine Intro (Modul-Variable bleibt erhalten, nur bei echtem Reload zurückgesetzt).
  */
-const SESSION_KEY = "anicca-intro-seen";
+let introAlreadyShownThisLoad = false;
+
 /* Intro gesamt 3,5 Sekunden: Logo einblenden → Pause → Overlay ausblenden */
 const LOGO_FADE_MS = 800;
 const PAUSE_MS = 1700;
@@ -20,14 +21,14 @@ export default function IntroOverlay() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
 
-  // 1) Intro nur beim ersten Besuch in diesem Tab; bei Impressum/Datenschutz/Klick zurück: kein Intro
+  // 1) Intro bei Reload zeigen; bei Impressum/Datenschutz (Client-Navigation) überspringen
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const alreadySeen = sessionStorage.getItem(SESSION_KEY);
-    if (alreadySeen === "1") {
+    if (introAlreadyShownThisLoad) {
       document.getElementById(PAGE_CONTENT_ID)?.classList.add("intro-visible");
       return;
     }
+    introAlreadyShownThisLoad = true;
     document.body.classList.add("intro-active");
     setMounted(true);
   }, []);
@@ -58,7 +59,6 @@ export default function IntroOverlay() {
 
     const t2 = setTimeout(() => {
       document.body.classList.remove("intro-active");
-      sessionStorage.setItem(SESSION_KEY, "1");
       setRemoveFromDOM(true);
     }, removeAt);
 

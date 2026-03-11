@@ -62,9 +62,9 @@ export default function ContactForm() {
       </label>
       <p className="text-xs text-navy-500 leading-relaxed">
         Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer{" "}
-        <Link href="/datenschutz" className="underline hover:text-gold-600">Datenschutzerklärung</Link>
+        <Link href="/rechtliches#datenschutz" className="underline hover:text-gold-600">Datenschutzerklärung</Link>
         {" "}und dem{" "}
-        <Link href="/impressum" className="underline hover:text-gold-600">Impressum</Link>
+        <Link href="/rechtliches#impressum" className="underline hover:text-gold-600">Impressum</Link>
         {" "}einverstanden. (Art. 13/14 DSGVO)
       </p>
       <button
