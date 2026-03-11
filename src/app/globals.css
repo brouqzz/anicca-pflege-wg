@@ -129,8 +129,10 @@ body.intro-active {
   transform: scale(1);
 }
 
-/* Seiteninhalt: nur während Intro versteckt (body.intro-active), sonst sichtbar */
+/* Seiteninhalt: initial versteckt, damit kein Aufblitzen vor dem Intro */
 #page-content {
+  opacity: 0;
+  transform: translateY(8px);
   transition: opacity 1.2s var(--intro-ease), transform 1.2s var(--intro-ease);
 }
 
@@ -139,6 +141,7 @@ body.intro-active #page-content {
   transform: translateY(8px);
 }
 
+/* Erst sichtbar, wenn Intro durchgelaufen oder übersprungen (sessionStorage) */
 #page-content.intro-visible {
   opacity: 1;
   transform: translateY(0);
