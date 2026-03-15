@@ -50,6 +50,13 @@ export const metadata: Metadata = {
     siteName: "Anicca Pflege WG",
     locale: "de_DE",
     type: "website",
+    images: [{ url: "/logo.png", width: 512, height: 512, alt: "Anicca Pflege WG" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Pflege WG Berlin | Anicca Pflege WG",
+    description: "Familiäre Pflege-WG in Berlin-Tiergarten. Kurzfristige Aufnahme, ambulante Pflege.",
+    images: ["/logo.png"],
   },
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: SITE_URL },
