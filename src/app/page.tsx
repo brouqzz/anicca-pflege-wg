@@ -22,7 +22,7 @@ export default function Home() {
             Familiär wohnen – professionell versorgt
           </p>
           <p className="mt-2 text-sm text-navy-500 sm:text-base">
-            Wenn die Entlassung geplant ist – Anicca ist bereit.
+            Ihre <strong>Pflege WG in Berlin</strong> – Tiergarten. Wenn die Entlassung geplant ist – Anicca ist bereit.
           </p>
         </div>
         <a
@@ -50,7 +50,7 @@ export default function Home() {
                 Über uns
               </h2>
               <p className="text-navy-600 leading-relaxed mb-6">
-                Die Anicca Pflege WG bietet eine familiäre Wohnform für Seniorinnen und Senioren mit Pflegebedarf – mitten im Herzen Berlins. Unsere kleine Wohngemeinschaft verbindet individuelles Wohnen, ambulante Pflege und ein sicheres Umfeld.
+                Die Anicca Pflege WG ist Ihre <strong>Pflege WG in Berlin</strong>: eine familiäre Wohnform für Seniorinnen und Senioren mit Pflegebedarf – mitten im Herzen der Stadt. Unsere kleine Wohngemeinschaft verbindet individuelles Wohnen, ambulante Pflege und ein sicheres Umfeld.
               </p>
               <p className="text-navy-600 leading-relaxed mb-4">
                 Kleine familiäre WG mit nur 5 Bewohnern. Mehrsprachige Kommunikation: Deutsch · Englisch · Ukrainisch · Polnisch · Russisch.
