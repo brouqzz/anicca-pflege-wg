@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import IntroOverlay from "@/components/IntroOverlay";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 /* Serif: Headlines – wirkt vertrauensvoll und ruhig */
@@ -113,6 +114,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <IntroOverlay />
+        <ScrollProgress />
         <div id="page-content" className="flex min-h-screen flex-1 flex-col">
           <Header />
           <main className="flex-1">{children}</main>

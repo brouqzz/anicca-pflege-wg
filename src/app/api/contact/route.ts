@@ -56,7 +56,7 @@ export async function POST(request: Request) {
   `;
 
   const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: FROM_EMAIL,
     to: [TO_EMAIL],
     replyTo: email,
@@ -66,8 +66,32 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error("Resend error:", error);
+
+    const resendMessage =
+      typeof error === "object" && error !== null && "message" in error
+        ? String((error as { message: string }).message)
+        : "";
+
+    // Ohne verifizierte Domain erlaubt Resend nur die Anmelde-E-Mail als Empfänger.
+    if (resendMessage.includes("only send testing emails to your own email address")) {
+      console.error(
+        `[contact] Empfänger ${TO_EMAIL} nicht erlaubt. Domain anicca.berlin bei Resend verifizieren oder CONTACT_TO_EMAIL auf die Resend-Konto-E-Mail setzen.`
+      );
+    }
+
     return NextResponse.json(
-      { error: "Die Nachricht konnte nicht gesendet werden. Bitte rufen Sie uns an." },
+      {
+        error:
+          "Die Nachricht konnte nicht gesendet werden. Bitte rufen Sie uns unter 0152 29451581 an oder schreiben Sie an nika.chekurda@icloud.com.",
+      },
+      { status: 500 }
+    );
+  }
+
+  if (!data?.id) {
+    console.error("Resend: keine E-Mail-ID zurückgegeben");
+    return NextResponse.json(
+      { error: "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später." },
       { status: 500 }
     );
   }
