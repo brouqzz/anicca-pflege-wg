@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import IntroOverlay from "@/components/IntroOverlay";
-import ScrollProgress from "@/components/ScrollProgress";
+import ScrollResetOnReload from "@/components/ScrollResetOnReload";
 import "./globals.css";
 
 /* Serif: Headlines – wirkt vertrauensvoll und ruhig */
@@ -72,6 +72,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -110,11 +111,16 @@ export default function RootLayout({
         className={`${cormorant.variable} ${sourceSans.variable} flex min-h-screen flex-col font-sans antialiased overflow-x-hidden`}
       >
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if("scrollRestoration"in history)history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){window.scrollTo(0,0);if(location.hash)history.replaceState(null,"",location.pathname+location.search);}})();`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollResetOnReload />
         <IntroOverlay />
-        <ScrollProgress />
         <div id="page-content" className="flex min-h-screen flex-1 flex-col">
           <Header />
           <main className="flex-1">{children}</main>

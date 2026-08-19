@@ -2,42 +2,49 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const NAV_LINKS = [
-  { href: "#ueber-uns",     label: "Über uns" },
-  { href: "#unsere-wg",     label: "Unsere WG" },
+const NAV = [
+  { href: "#ueber-uns", label: "Über uns" },
+  { href: "#unsere-wg", label: "Unsere WG" },
   { href: "#pflegekonzept", label: "Pflege" },
-  { href: "#leistungen",    label: "Leistungen" },
-  { href: "#galerie",       label: "Galerie" },
+  { href: "#leistungen", label: "Leistungen" },
+  { href: "#galerie", label: "Galerie" },
+  { href: "#kontakt", label: "Kontakt" },
 ] as const;
 
-const INFO_PHONE = "0152 / 29451581";
-
 export default function Header() {
-  const [menuOpen, setMenuOpen]   = useState(false);
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const solid = scrolled || open || pathname !== "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-400 ease-lux ${
-        scrolled
-          ? "border-b border-ink-900/10 bg-paper-100/90 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-500 ${
+        solid
+          ? "border-b border-ink-900/8 bg-paper-100/92 backdrop-blur-md"
+          : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-18 max-w-8xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        {/* Logo */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-70 focus:outline-none focus:ring-2 focus:ring-clay-400 focus:ring-offset-2 rounded min-h-[44px]"
+          className="flex min-h-[44px] items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-400"
           aria-label="Anicca Pflege WG – Startseite"
         >
           {!logoError && (
@@ -45,93 +52,91 @@ export default function Header() {
             <img
               src="/logo.png"
               alt=""
-              width={200}
-              height={100}
-              className="h-9 w-auto object-contain sm:h-11"
+              width={160}
+              height={80}
+              className={`h-8 w-auto sm:h-9 ${solid ? "" : "brightness-0 invert"}`}
               onError={() => setLogoError(true)}
             />
           )}
-          <span className="font-serif text-lg font-medium tracking-tight text-ink-900 sm:text-xl">
-            Anicca
-          </span>
+          <span className={`font-serif text-lg ${solid ? "text-ink-900" : "text-paper-50"}`}>Anicca</span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex md:items-center md:gap-9" aria-label="Hauptnavigation">
-          {NAV_LINKS.map(({ href, label }) => (
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Hauptnavigation">
+          {NAV.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="link-underline text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-500 transition-colors hover:text-ink-900 focus:outline-none"
+              className={`text-sm transition-colors ${
+                solid ? "text-ink-500 hover:text-ink-900" : "text-paper-50/80 hover:text-paper-50"
+              }`}
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
         <a
-          href="#kontakt"
-          className="hidden md:inline-flex min-h-[44px] items-center rounded-full bg-ink-900 px-6 text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-paper-100 transition-all duration-400 ease-lux hover:bg-clay-500 focus:outline-none focus:ring-2 focus:ring-clay-400 focus:ring-offset-2"
+          href="/#kontakt"
+          className={`hidden min-h-[2.5rem] items-center justify-center px-4 text-sm font-medium lg:inline-flex ${
+            solid
+              ? "btn-primary !min-h-[2.5rem]"
+              : "bg-paper-50 text-ink-900"
+          }`}
         >
-          Kontakt
+          Besichtigung
         </a>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
-          onClick={() => setMenuOpen((o) => !o)}
-          className="flex h-11 w-11 items-center justify-center rounded-full text-ink-800 transition-colors hover:bg-ink-900/5 md:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          aria-label="Menü öffnen oder schließen"
+          className="flex h-11 w-11 items-center justify-center lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label="Menü"
+          onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">Menü</span>
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+          <svg
+            className={`h-5 w-5 ${solid ? "text-ink-800" : "text-paper-50"}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden
+          >
             <motion.path
               strokeLinecap="round"
-              strokeLinejoin="round"
               strokeWidth={1.5}
-              animate={menuOpen ? { d: "M6 18L18 6M6 6l12 12" } : { d: "M4 7h16M4 17h16" }}
-              transition={{ duration: 0.2 }}
+              animate={open ? { d: "M6 18L18 6M6 6l12 12" } : { d: "M4 8h16M4 16h16" }}
             />
           </svg>
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {open && (
           <motion.div
-            id="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-ink-900/10 bg-paper-100 md:hidden"
-            role="region"
-            aria-label="Mobile Navigation"
+            id="mobile-nav"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 top-[calc(4rem+env(safe-area-inset-top))] z-40 bg-paper-100 lg:hidden"
           >
-            <nav className="flex flex-col px-5 py-4" aria-label="Mobile Hauptnavigation">
-              {[...NAV_LINKS, { href: "#kontakt", label: "Kontakt" }].map(({ href, label }) => (
+            <nav className="flex flex-col px-5 py-6" aria-label="Mobile Navigation">
+              {NAV.map(({ href, label }) => (
                 <Link
                   key={href}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-[52px] items-center justify-between border-b border-ink-900/10 font-serif text-xl text-ink-800 transition-colors hover:text-clay-500"
+                  href={href.startsWith("#") ? `/${href}` : href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-ink-900/10 py-4 font-serif text-2xl text-ink-800"
                 >
                   {label}
-                  <svg className="h-4 w-4 text-ink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </Link>
               ))}
               <a
                 href="tel:+4915229451581"
-                className="mt-5 flex min-h-[52px] items-center justify-center rounded-full bg-ink-900 text-sm font-semibold uppercase tracking-[0.12em] text-paper-100 transition-colors hover:bg-clay-500"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => setOpen(false)}
+                className="mt-6 btn-secondary w-full"
               >
-                {INFO_PHONE}
+                0152 29451581
               </a>
             </nav>
           </motion.div>

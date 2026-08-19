@@ -8,88 +8,81 @@ export const metadata: Metadata = {
 
 export default function RechtlichesPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-      <div className="mb-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-navy-600 hover:text-gold-600 transition-colors"
-        >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Zurück zur Startseite
-        </Link>
-        <h1 className="mt-4 font-serif text-2xl text-navy-700 sm:text-display">
-          Impressum & Datenschutz
-        </h1>
-      </div>
+    <div className="section-shell pb-16 pt-24 sm:pb-24 sm:pt-28">
+      <Link href="/" className="text-link inline-flex items-center gap-2 text-sm">
+        ← Zurück zur Startseite
+      </Link>
+      <h1 className="mt-6 font-serif text-[clamp(2rem,4vw,2.75rem)] text-ink-900">
+        Impressum & Datenschutz
+      </h1>
 
-      <div className="space-y-10">
-        {/* Kasten Impressum */}
-        <section
-          id="impressum"
-          className="rounded-xl border border-beige-200 bg-white p-6 shadow-soft sm:p-8"
-          aria-labelledby="impressum-heading"
-        >
-          <h2 id="impressum-heading" className="font-serif text-xl text-navy-700 mb-6">
+      <div className="mt-12 space-y-12">
+        <section id="impressum" aria-labelledby="impressum-heading" className="border-t border-ink-900/10 pt-10">
+          <h2 id="impressum-heading" className="font-serif text-2xl text-ink-900">
             Impressum
           </h2>
-          <div className="text-navy-600 text-sm leading-relaxed space-y-4">
-            <p className="font-semibold text-navy-700">Anicca Pflege WG</p>
-            <p>Pohlstraße 49</p>
-            <p>10785 Berlin</p>
-            <p className="pt-2">
-              <span className="font-medium text-navy-700">Ansprechpartnerin:</span> Veronika Chekurda<br />
+          <div className="mt-6 space-y-4 text-sm leading-relaxed text-ink-600">
+            <p className="font-medium text-ink-800">Anicca Pflege WG</p>
+            <p>Pohlstraße 49<br />10785 Berlin</p>
+            <p>
+              <span className="font-medium text-ink-800">Ansprechpartnerin:</span> Veronika Chekurda
+              <br />
               Telefon:{" "}
-              <a href="tel:+4915229451581" className="hover:text-gold-600 transition-colors">
+              <a href="tel:+4915229451581" className="text-link !text-sm">
                 0152 29451581
               </a>
               <br />
               E-Mail:{" "}
-              <a href="mailto:nika.chekurda@icloud.com" className="hover:text-gold-600 transition-colors break-all">
+              <a href="mailto:nika.chekurda@icloud.com" className="text-link !text-sm whitespace-nowrap">
                 nika.chekurda@icloud.com
               </a>
             </p>
             <p>
-              <span className="font-medium text-navy-700">Vladislav Pinskij</span><br />
+              <span className="font-medium text-ink-800">Vladislav Pinskij</span>
+              <br />
               Telefon:{" "}
-              <a href="tel:+491778238631" className="hover:text-gold-600 transition-colors">
+              <a href="tel:+491778238631" className="text-link !text-sm">
                 0177 8238631
               </a>
             </p>
-            <p className="pt-4 text-navy-500">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Veronika Chekurda, Pohlstraße 49, 10785 Berlin.
+            <p className="text-ink-500">
+              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Veronika Chekurda, Pohlstraße 49,
+              10785 Berlin.
             </p>
           </div>
         </section>
 
-        {/* Kasten Datenschutz */}
-        <section
-          id="datenschutz"
-          className="rounded-xl border border-beige-200 bg-white p-6 shadow-soft sm:p-8"
-          aria-labelledby="datenschutz-heading"
-        >
-          <h2 id="datenschutz-heading" className="font-serif text-xl text-navy-700 mb-6">
+        <section id="datenschutz" aria-labelledby="datenschutz-heading" className="border-t border-ink-900/10 pt-10">
+          <h2 id="datenschutz-heading" className="font-serif text-2xl text-ink-900">
             Datenschutzerklärung
           </h2>
-          <div className="text-navy-600 text-sm leading-relaxed space-y-4">
-            <p className="font-medium text-navy-700">Verantwortliche Stelle</p>
+          <div className="mt-6 space-y-4 text-sm leading-relaxed text-ink-600">
+            <p className="font-medium text-ink-800">Verantwortliche Stelle</p>
             <p>
-              Anicca Pflege WG, Pohlstraße 49, 10785 Berlin. Kontakt: nika.chekurda@icloud.com, Tel. 0152 29451581.
+              Anicca Pflege WG, Pohlstraße 49, 10785 Berlin. Kontakt: nika.chekurda@icloud.com,
+              Tel. 0152 29451581.
             </p>
-            <p className="font-medium text-navy-700 pt-2">Erhebung und Verarbeitung personenbezogener Daten</p>
+            <p className="font-medium text-ink-800 pt-2">Erhebung und Verarbeitung personenbezogener Daten</p>
             <p>
-              Beim Besuch dieser Website können Zugriffsdaten (Datum, Uhrzeit, aufgerufene Seite, übertragene Datenmenge, Browser/Endgerät) in Server-Logs erfasst werden. Eine Zuordnung zu Ihrer Person erfolgt nicht. Sofern Sie uns per Kontaktformular oder E-Mail schreiben, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verarbeitet.
+              Beim Besuch dieser Website können Zugriffsdaten (Datum, Uhrzeit, aufgerufene Seite,
+              übertragene Datenmenge, Browser/Endgerät) in Server-Logs erfasst werden. Eine Zuordnung
+              zu Ihrer Person erfolgt nicht. Sofern Sie uns per Kontaktformular oder E-Mail schreiben,
+              werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verarbeitet.
             </p>
-            <p className="font-medium text-navy-700 pt-2">Rechtsgrundlage und Zweck</p>
+            <p className="font-medium text-ink-800 pt-2">Rechtsgrundlage und Zweck</p>
             <p>
-              Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung/Anfrage) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am Betrieb der Website). Eine Weitergabe an Dritte erfolgt nur, soweit gesetzlich vorgesehen oder Sie eingewilligt haben.
+              Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO
+              (Vertragsanbahnung/Anfrage) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am
+              Betrieb der Website). Eine Weitergabe an Dritte erfolgt nur, soweit gesetzlich vorgesehen
+              oder Sie eingewilligt haben.
             </p>
-            <p className="font-medium text-navy-700 pt-2">Ihre Rechte</p>
+            <p className="font-medium text-ink-800 pt-2">Ihre Rechte</p>
             <p>
-              Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15–22 DSGVO). Beschwerden können Sie bei einer Aufsichtsbehörde für den Datenschutz einreichen.
+              Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+              Datenübertragbarkeit und Widerspruch (Art. 15–22 DSGVO). Beschwerden können Sie bei einer
+              Aufsichtsbehörde für den Datenschutz einreichen.
             </p>
-            <p className="text-navy-500 pt-2">
+            <p className="text-ink-500 pt-2">
               Stand: Angaben bitte bei Bedarf durch einen Rechtsberater prüfen und ergänzen.
             </p>
           </div>
